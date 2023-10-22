@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 class HelloController {
 
-    @GetMapping("/hello")
+    @GetMapping("/")
     @ResponseBody
     public String hello() {
         return "Hello from Spring!";
