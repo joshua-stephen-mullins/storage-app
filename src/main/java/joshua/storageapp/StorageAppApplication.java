@@ -8,7 +8,6 @@ public class StorageAppApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(StorageAppApplication.class, args);
-		System.out.println("HELLO WORLD");
 	}
 
 }
