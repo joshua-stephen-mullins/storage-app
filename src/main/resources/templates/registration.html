@@ -15,26 +15,26 @@
         <div class="container h-100 d-flex justify-content-center">
             <div class="row justify-content-center align-items-center w-75 h-75">
                 <h1>Create Account</h1>
-                <form>
+                <form th:action="@{/registration}" th:method="post" th:object="${user}" id="registrationForm">
                     <div class="mb-3">
                         <label for="username" class="form-label">Username</label>
-                        <input type="text" class="form-control" id="username" aria-describedby="usernameHelp">
+                        <input th:field="*{username}" type="text" class="form-control" id="username" aria-describedby="usernameHelp">
                     </div>
                     <div class="mb-3">
                         <label for="firstName" class="form-label">First Name</label>
-                        <input type="text" class="form-control" id="firstName" aria-describedby="firstNameHelp">
+                        <input th:field="*{firstName}"type="text" class="form-control" id="firstName" aria-describedby="firstNameHelp">
                     </div>
                     <div class="mb-3">
                         <label for="lastName" class="form-label">Last Name</label>
-                        <input type="text" class="form-control" id="lastName" aria-describedby="lastNameHelp">
+                        <input th:field="*{lastName}" type="text" class="form-control" id="lastName" aria-describedby="lastNameHelp">
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
+                        <input th:field="*{email}" type="email" class="form-control" id="email" aria-describedby="emailHelp">
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password">
+                        <input th:field="*{password}" type="password" class="form-control" id="password">
                     </div>
                     <div class="mb-3">
                         <label for="verifyPassword" class="form-label">Verify Password</label>

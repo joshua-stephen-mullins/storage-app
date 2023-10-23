@@ -15,7 +15,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(nullable = false, length = 25)
+    @Column(nullable = false, length = 25, unique = true)
     private String username;
 
     @Column(nullable = false, length = 25)
@@ -24,7 +24,7 @@ public class User {
     @Column(nullable = false, length = 25)
     private String lastName;
 
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false, length = 100, unique = true)
     private String email;
 
     @Column(nullable = false)
@@ -95,14 +95,18 @@ public class User {
     // Contructors
     public User(){};
 
-    public User(long id, String username, String firstName, String lastName, String email, String password, Date created, boolean isAdmin){
-        this.id = id;
+    public User(String username, String firstName, String lastName, String email, String password){
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
-        this.created = created;
-        this.isAdmin = isAdmin;
+    }
+
+    public User(User copy) {
+        id = copy.id;
+        email = copy.email;
+        username = copy.username;
+        password = copy.password;
     }
 }
