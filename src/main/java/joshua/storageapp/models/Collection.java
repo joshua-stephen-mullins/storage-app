@@ -29,6 +29,8 @@ public class Collection {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "collection")
     private List<Container> containers;
 
+    @Column(nullable = false)
+    private String imageUrl;
 
     // Getters
     public long getId() {
@@ -47,7 +49,9 @@ public class Collection {
         return description;
     }
 
-
+    public String getImageUrl() {
+        return imageUrl;
+    }
 
     // Setters
     public void setId(long id) {
@@ -65,12 +69,14 @@ public class Collection {
     public void setDescription(String description) {
         this.description = description;
     }
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 
     // Constructors
     public Collection() {
     }
-    public Collection(long id, User user, Date created, String name, String description) {
-        this.id = id;
+    public Collection(User user, Date created, String name, String description) {
         this.user = user;
         this.created = created;
         this.name = name;

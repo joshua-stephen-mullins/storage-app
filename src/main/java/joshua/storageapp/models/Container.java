@@ -26,6 +26,9 @@ public class Container {
     @Column(nullable = false)
     private String description;
 
+    @Column(nullable = false)
+    private String imageUrl;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "container")
     private List<Item> items;
 
@@ -44,6 +47,10 @@ public class Container {
     }
     public long getId() {
         return id;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
     }
 
     // Setters
@@ -67,11 +74,12 @@ public class Container {
         this.description = description;
     }
 
-
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
     // Constructors
     public Container(){}
-    public Container(long id, Collection collection, Date created, String name, String description) {
-        this.id = id;
+    public Container(Collection collection, Date created, String name, String description) {
         this.collection = collection;
         this.created = created;
         this.name = name;

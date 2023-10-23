@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <meta charset="UTF-8">
@@ -11,18 +11,20 @@
 
 <body>
 
+    <nav th:replace="~{partials.html :: navbar}" ></nav>
+
     <section class="vh-100">
-        <div class="container h-100 d-flex justify-content-center">
+        <div class="container h-100 d-flex justify-content-center align-items-center">
             <div class="row justify-content-center align-items-center w-75 h-75">
                 <h1>Login</h1>
-                <form>
+                <form th:action="@{/login}" method="post">
                     <div class="mb-3">
                         <label for="username" class="form-label">Username</label>
-                        <input type="text" class="form-control" id="username" aria-describedby="usernameHelp">
+                        <input name="username" type="text" class="form-control" id="username" aria-describedby="usernameHelp">
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password">
+                        <input name="password" type="password" class="form-control" id="password">
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                     <a href="/registration" class="btn btn-primary">Create Account</a>

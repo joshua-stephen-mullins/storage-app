@@ -20,8 +20,6 @@ public class UserDaoService {
     }
 
     public void registerUser (User user){
-        System.out.println("************ " + user.getUsername());
-        System.out.println("************ " + user.getPassword());
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
         user.setCreated(new Date());

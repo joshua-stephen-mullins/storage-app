@@ -41,18 +41,18 @@ public class SecurityConfiguration {
                  * Pages that require authentication
                  * only authenticated users can create and edit ads
                  */
-                .requestMatchers("/ads/create", "/ads/*/edit").authenticated()
+                .requestMatchers("/create").authenticated()
                 /*
                  * Pages that do not require authentication
                  * anyone can visit the home page, register, and login
                  */
-                .requestMatchers("/", "/registration", "/login").permitAll()
+                .requestMatchers("/", "/registration", "/login", "/user").permitAll()
                 // allow loading of static resources
                 .requestMatchers("/css/**", "/js/**", "/img/**").permitAll())
                 /* Login configuration */
-                .formLogin((login) -> login.loginPage("/login").defaultSuccessUrl("/"))
+                .formLogin((login) -> login.loginPage("/login").defaultSuccessUrl("/user"))
                 /* Logout configuration */
-                .logout((logout) -> logout.logoutSuccessUrl("/"))
+                .logout((logout) -> logout.logoutSuccessUrl("/login"))
                 .httpBasic(withDefaults());
         return http.build();
     }
