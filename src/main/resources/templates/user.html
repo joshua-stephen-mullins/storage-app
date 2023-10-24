@@ -26,6 +26,14 @@
                     <h5>Number of containers</h5>
                     <h5>Number of items</h5>
                 </div>
+                <th:block th:each="collection : ${collections}">
+    
+                <div class="d-flex h-25 w-75 border border-primary mt-3">
+                    <h3><span th:text="${collection.getName()}"></span></h3>
+                    <h5>Number of containers</h5>
+                    <h5>Number of items</h5>
+                </div>
+                </th:block>
             </div>
         </div>
     </section>

@@ -25,6 +25,7 @@ public class CreateDaoService {
 
     public void createCollection(Collection collection){
         collection.setCreated(new Date());
+        collection.setImageUrl("https://placehold.co/600x400");
         collectionDao.save(collection);
     }
 

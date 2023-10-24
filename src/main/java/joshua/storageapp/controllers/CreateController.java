@@ -22,14 +22,14 @@ public class CreateController {
     @GetMapping("/create-collection")
     public String showCreateCollection(Model model) {
         model.addAttribute("collection", new Collection());
-        return "create-collection";
+        return "createCollection";
     }
 
-    @PostMapping
+    @PostMapping("/create-collection")
     public String createCollection(@ModelAttribute Collection collection) {
         collection.setUser((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         createDao.createCollection(collection);
-        return "";
+        return "redirect:/user";
     }
 
 }

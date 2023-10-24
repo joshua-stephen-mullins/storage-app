@@ -16,8 +16,9 @@ class UserController {
     private UserDaoService userDao;
     private CreateDaoService createDao;
 
-    public UserController(UserDaoService userDao){
+    public UserController(UserDaoService userDao, CreateDaoService createDao){
         this.userDao = userDao;
+        this.createDao = createDao;
     }
 
     @GetMapping("/login")
@@ -45,7 +46,7 @@ class UserController {
 
     @GetMapping("/user")
     public String showUserPage(Model model) {
-        // model.addAttribute("collections", createDao.findCollectionsByUser((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()));
+        model.addAttribute("collections", createDao.findCollectionsByUser((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()));
         return "user";
     }
 }
