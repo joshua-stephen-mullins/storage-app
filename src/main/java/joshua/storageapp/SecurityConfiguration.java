@@ -41,7 +41,7 @@ public class SecurityConfiguration {
                  * Pages that require authentication
                  * only authenticated users can create and edit ads
                  */
-                .requestMatchers("/create-collection", "/user").authenticated()
+                .requestMatchers("/create-collection", "/user", "create-container").authenticated()
                 /*
                  * Pages that do not require authentication
                  * anyone can visit the home page, register, and login

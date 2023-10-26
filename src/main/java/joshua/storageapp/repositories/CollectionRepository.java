@@ -12,4 +12,5 @@ public interface CollectionRepository extends JpaRepository<Collection, Long>{
 
     List<Collection> findByUser(User user);
 
+    Collection findById(long id);
 }

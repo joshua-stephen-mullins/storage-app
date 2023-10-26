@@ -5,12 +5,12 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import joshua.storageapp.models.Collection;
-import joshua.storageapp.models.User;
+import joshua.storageapp.models.*;
 import joshua.storageapp.repositories.*;
 
 @Service
 public class CreateDaoService {
+
     private final UserDaoService userDao;
     private final CollectionRepository collectionDao;
     private final ContainerRepository containerDao;
@@ -29,8 +29,18 @@ public class CreateDaoService {
         collectionDao.save(collection);
     }
 
+    public void createContainer(Container container){
+        container.setCreated(new Date());
+        container.setImageUrl("https://placehold.co/600x400");
+        containerDao.save(container);
+    }
+
     public List<Collection> findCollectionsByUser(User user){
         return collectionDao.findByUser(user);
+    }
+
+    public Collection findCollectionById(long id){
+        return collectionDao.findById(id);
     }
     
 }
