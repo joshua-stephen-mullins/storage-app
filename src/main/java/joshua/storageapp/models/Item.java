@@ -86,15 +86,14 @@ public class Item {
     }
 
     // Constructors
-    public Item(long id, Container container, Date created, String name, String description, long quantity,
-            String imageUrl) {
-        this.id = id;
-        this.container = container;
+    public Item(Date created, String name, String description, long quantity) {
         this.created = created;
         this.name = name;
         this.description = description;
         this.quantity = quantity;
-        this.imageUrl = imageUrl;
+    }
+
+    public Item(){
     }
     
 }

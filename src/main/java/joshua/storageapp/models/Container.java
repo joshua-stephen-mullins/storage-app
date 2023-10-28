@@ -14,7 +14,7 @@ public class Container {
     private long id;
 
     @ManyToOne
-    @JoinColumn (name = "collection_id")
+    @JoinColumn(name = "collection_id")
     private Collection collection;
 
     @Column(nullable = false)
@@ -36,21 +36,29 @@ public class Container {
     public Collection getCollection() {
         return collection;
     }
+
     public Date getCreated() {
         return created;
     }
+
     public String getName() {
         return name;
     }
+
     public String getDescription() {
         return description;
     }
+
     public long getId() {
         return id;
     }
 
     public String getImageUrl() {
         return imageUrl;
+    }
+
+    public List<Item> getItems() {
+        return items;
     }
 
     // Setters
@@ -77,8 +85,15 @@ public class Container {
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
+    }
+
     // Constructors
-    public Container(){}
+    public Container() {
+    }
+
     public Container(Collection collection, Date created, String name, String description) {
         this.collection = collection;
         this.created = created;

@@ -1,5 +1,7 @@
 package joshua.storageapp.controllers;
 
+import java.util.Date;
+
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,17 +35,35 @@ public class CreateController {
         return "redirect:/user";
     }
 
-    @GetMapping("/create-container")
-    public String showCreateContainer(Model model) {
+    @GetMapping("/create-container/{id}")
+    public String showCreateContainer(Model model, @PathVariable long id) {
         model.addAttribute("container", new Container());
+        model.addAttribute("collection", createDao.findCollectionById(id));
         return "createContainer";
     }
 
-    @PostMapping("/create-container")
-    public String createContainer(@ModelAttribute Container container, @RequestParam(name = "collectionId") int collectionId) { 
-        container.setCollection(createDao.findCollectionById(collectionId));
+    @PostMapping("/create-container/{id}")
+    public String createContainer(@PathVariable long id, @RequestParam(name = "name") String name,
+            @RequestParam(name = "description") String description) {
+        long collectionId = id;
+        Container container = new Container(createDao.findCollectionById(collectionId), new Date(), name, description);
         createDao.createContainer(container);
-        return "redirect:/user";
+        return "redirect:/collection/" + id;
+    }
+
+    @GetMapping("/create-item/{id}")
+    public String showCreateItem(Model model, @PathVariable long id) {
+        model.addAttribute("item", new Item());
+        model.addAttribute("container", createDao.findContainerById(id));
+        return "createItem";
+    }
+
+    @PostMapping("/create-item/{id}")
+    public String createItem(@PathVariable long id, @RequestParam(name = "name") String name, @RequestParam(name = "description") String description, @RequestParam(name = "quantity") int quantity){
+        Item item = new Item(new Date(), name, description, quantity);
+        item.setContainer(createDao.findContainerById(id));
+        createDao.createItem(item);
+        return "redirect:/container/" + id;
     }
 
 }

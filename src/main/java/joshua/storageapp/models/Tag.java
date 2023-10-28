@@ -37,8 +37,7 @@ public class Tag {
 
     // Constructors
     public Tag(){}
-    public Tag(long id, String name) {
-        this.id = id;
+    public Tag(String name) {
         this.name = name;
     }
 

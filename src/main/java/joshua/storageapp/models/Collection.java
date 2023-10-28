@@ -1,6 +1,8 @@
 package joshua.storageapp.models;
 
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -58,8 +60,7 @@ public class Collection {
     }
 
     public List<Container> getContainers() {
-        System.out.println("RAN THE THING: " + containers.size());
-        return containers;
+       return containers;
     }
 
     // Setters
@@ -87,6 +88,10 @@ public class Collection {
         this.imageUrl = imageUrl;
     }
 
+    public void setContainers(List<Container> containers) {
+        this.containers = containers;
+    }
+
     // Constructors
     public Collection() {
     }
@@ -98,4 +103,22 @@ public class Collection {
         this.description = description;
     }
 
+    // Methods
+    public int getNumberOfItems(){
+        int total = 0;
+        for (Container container : this.getContainers()){
+            total += container.getItems().size();
+        }
+        return total;
+    }
+
+    public List<Item> getItems(){
+        List<Item> items = new ArrayList<Item>();
+        for (Container container : this.getContainers()){
+            for (Item item : container.getItems()){
+                items.add(item);
+            }
+        }
+        return items;
+    }
 }

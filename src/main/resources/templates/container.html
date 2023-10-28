@@ -4,30 +4,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Username's Collections</title>
+    <title th:text="${container.getName()}"></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 
 <body>
-    <nav th:replace="~{partials.html :: navbar}"></nav>
+    <nav th:replace="~{partials.html :: navbar}" ></nav>
 
     <section class="vh-100">
         <div class="container h-100 d-flex flex-column justify-content-center align-items-center">
-            <h1>Collections</h1>
+            <h1><span th:text="${container.getName()}"></span></h1>
+            <h3><span th:text="${container.getDescription()}"></span></h3>
             <div class="row border border-primary justify-content-center align-content-start w-75 h-75">
-                <th:block th:if="${collections.size()} == 0">
+                <h2>Items</h2>
                 <div class="d-flex h-25 w-75 border border-primary mt-3">
-                    <h3>No collections yet!</h3>
+                    <h3><a th:href="@{/create-item/{id}(id=${container.getId()})}"> + Create Items</a></h3>
                 </div>
+                <th:block th:if="${container.getItems().size()} == 0">
+                    <h2>Sorry no items yet!</h2>
                 </th:block>
-                <th:block th:each="collection : ${collections}">
-                    <a class="d-flex h-25 w-75 border border-primary mt-3"
-                        th:href="@{/collection/{id}(id=${collection.getId()})}">
-                        <h3><span th:text="${collection.getName()}"></span></h3>
-                        <h5><span th:text="${collection.getContainers().size()}"></span> Containers</h5>
-                        <h5><span th:text="${collection.getNumberOfItems()}"></span>Total Items</h5>
-                    </a>
+                <th:block th:each="item : ${container.getItems()}">
+                <div class="d-flex h-25 w-75 border border-primary mt-3">
+                    <a th:href="@{/item/{id}(id=${item.getId()})}"><h3><span th:text="${item.getName()}"></span></h3></a>
+                </div>
                 </th:block>
             </div>
         </div>
