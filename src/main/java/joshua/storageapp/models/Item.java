@@ -7,14 +7,14 @@ import java.util.Set;
 @Entity
 @Table(name = "items")
 public class Item {
-    
+
     // Fields
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @ManyToOne
-    @JoinColumn (name = "container_id")
+    @JoinColumn(name = "container_id")
     private Container container;
 
     @Column(nullable = false)
@@ -33,56 +33,73 @@ public class Item {
     private String imageUrl;
 
     @ManyToMany
-    @JoinTable(
-            name = "item_tags",
-            joinColumns = @JoinColumn(name = "items"),
-            inverseJoinColumns = @JoinColumn(name = "tags"))
+    @JoinTable(name = "item_tags", joinColumns = @JoinColumn(name = "items"), inverseJoinColumns = @JoinColumn(name = "tags"))
     Set<Tag> tags;
 
     // Getters
     public long getId() {
         return id;
     }
+
     public Container getContainer() {
         return container;
     }
+
     public Date getCreated() {
         return created;
     }
+
     public String getName() {
         return name;
     }
+
     public String getDescription() {
         return description;
     }
+
     public long getQuantity() {
         return quantity;
     }
+
     public String getImageUrl() {
         return imageUrl;
+    }
+
+    public Set<Tag> getTags() {
+        return tags;
     }
 
     // Setters
     public void setId(long id) {
         this.id = id;
     }
+
     public void setContainer(Container container) {
         this.container = container;
     }
+
     public void setCreated(Date created) {
         this.created = created;
     }
+
     public void setName(String name) {
         this.name = name;
     }
+
     public void setDescription(String description) {
         this.description = description;
     }
+
     public void setQuantity(long quantity) {
         this.quantity = quantity;
     }
+
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public void setTags(Set<Tag> tags) {
+        this.tags = tags;
     }
 
     // Constructors
@@ -93,7 +110,7 @@ public class Item {
         this.quantity = quantity;
     }
 
-    public Item(){
+    public Item() {
     }
-    
+
 }

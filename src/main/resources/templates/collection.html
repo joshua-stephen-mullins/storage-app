@@ -33,7 +33,7 @@
                 <hr>
                 <h2>Items</h2>
                 <th:block th:each="item : ${collection.getItems()}">
-                <a class="d-flex h-25 col-3 border border-primary mt-3" th:href="@{/item/{id}(id=${container.getId()})}">
+                <a class="d-flex h-25 col-3 border border-primary mt-3" th:href="@{/item/{id}(id=${item.getId()})}">
                     <h3><span th:text="${item.getName()}"></span></h3>
                     <h5><span th:text="${item.getQuantity()}"></span></h5>
                 </a>

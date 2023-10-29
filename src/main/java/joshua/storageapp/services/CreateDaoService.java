@@ -15,13 +15,15 @@ public class CreateDaoService {
     private final CollectionRepository collectionDao;
     private final ContainerRepository containerDao;
     private final ItemRepository itemDao;
+    private final TagRepository tagDao;
 
     public CreateDaoService(UserDaoService userDao, CollectionRepository collectionDao,
-            ContainerRepository containerDao, ItemRepository itemDao) {
+            ContainerRepository containerDao, ItemRepository itemDao, TagRepository tagDao) {
         this.userDao = userDao;
         this.collectionDao = collectionDao;
         this.containerDao = containerDao;
         this.itemDao = itemDao;
+        this.tagDao = tagDao;
     }
 
     public void createCollection(Collection collection) {
@@ -40,6 +42,10 @@ public class CreateDaoService {
         itemDao.save(item);
     }
 
+    public void createTag(Tag tag) {
+        tagDao.save(tag);
+    }
+
     public List<Collection> findCollectionsByUser(User user) {
         return collectionDao.findByUser(user);
     }
@@ -54,6 +60,18 @@ public class CreateDaoService {
 
     public Item findItemById(long id) {
         return itemDao.findById(id);
+    }
+
+    public Tag findTagByName(String name){
+        return tagDao.findByName(name);
+    }
+
+    public boolean checkIfTagExists(String name){
+        if (tagDao.findByName(name) != null){
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }
