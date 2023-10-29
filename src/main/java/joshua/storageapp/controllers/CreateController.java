@@ -1,6 +1,9 @@
 package joshua.storageapp.controllers;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -59,9 +62,23 @@ public class CreateController {
     }
 
     @PostMapping("/create-item/{id}")
-    public String createItem(@PathVariable long id, @RequestParam(name = "name") String name, @RequestParam(name = "description") String description, @RequestParam(name = "quantity") int quantity){
+    public String createItem(@PathVariable long id, @RequestParam(name = "name") String name,
+            @RequestParam(name = "description") String description, @RequestParam(name = "quantity") int quantity,
+            @RequestParam(name = "tags") String tags) {
         Item item = new Item(new Date(), name, description, quantity);
         item.setContainer(createDao.findContainerById(id));
+        String[] tagsArray = tags.split(" ");
+        Set<Tag> tagSet = new HashSet<Tag>();
+        for (String tagName : tagsArray) {
+            if (createDao.checkIfTagExists(tagName)) {
+                tagSet.add(createDao.findTagByName(name));
+            } else {
+                Tag newTag = new Tag(tagName);
+                createDao.createTag(newTag);
+                tagSet.add(newTag);
+            }
+        }
+        item.setTags(tagSet);
         createDao.createItem(item);
         return "redirect:/container/" + id;
     }
