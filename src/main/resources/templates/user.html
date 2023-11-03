@@ -17,17 +17,27 @@
             <h1>Collections</h1>
             <div class="row justify-content-center align-content-start w-75">
                 <th:block th:if="${collections.size()} == 0">
-                <div class="d-flex h-25 w-75 border border-primary mt-3">
-                    <h3>No collections yet!</h3>
-                </div>
+                    <div class="d-flex h-25 w-75 border border-primary mt-3">
+                        <h3>No collections yet!</h3>
+                    </div>
                 </th:block>
                 <th:block th:each="collection : ${collections}">
-                    <a class="d-flex h-25 w-75 border border-primary mt-3"
-                        th:href="@{/collection/{id}(id=${collection.getId()})}">
-                        <h3><span th:text="${collection.getName()}"></span></h3>
-                        <h5><span th:text="${collection.getContainers().size()}"></span> Containers</h5>
-                        <h5><span th:text="${collection.getNumberOfItems()}"></span>Total Items</h5>
-                    </a>
+                    <!-- <div class="card">
+                        <a class="d-flex h-25 w-75 border border-primary mt-3"
+                            th:href="@{/collection/{id}(id=${collection.getId()})}">
+                            <h3><span th:text="${collection.getName()}"></span></h3>
+                            <h5><span th:text="${collection.getContainers().size()}"></span> Containers</h5>
+                            <h5><span th:text="${collection.getNumberOfItems()}"></span>Total Items</h5>
+                        </a>
+                    </div> -->
+                    <div class="card p-0 m-2" style="width: 18rem;">
+                        <a th:href="@{/collection/{id}(id=${collection.getId()})}">
+                            <img th:src="${collection.getImageUrl()}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <p th:text="${collection.getName()}" class="card-title"></p>
+                            </div>
+                        </a>
+                    </div>
                 </th:block>
             </div>
         </div>

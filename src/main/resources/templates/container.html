@@ -12,11 +12,11 @@
 <body>
     <nav th:replace="~{partials.html :: navbar}" ></nav>
 
-    <section class="vh-100">
-        <div class="container h-100 d-flex flex-column justify-content-center align-items-center">
+    <section class="">
+        <div class="container d-flex flex-column justify-content-center align-items-center">
             <h1><span th:text="${container.getName()}"></span></h1>
             <h3><span th:text="${container.getDescription()}"></span></h3>
-            <div class="row border border-primary justify-content-center align-content-start w-75 h-75">
+            <div class="row justify-content-center align-content-start w-75">
                 <h2>Items</h2>
                 <div class="d-flex h-25 w-75 border border-primary mt-3">
                     <h3><a th:href="@{/create-item/{id}(id=${container.getId()})}"> + Create Items</a></h3>
@@ -25,9 +25,14 @@
                     <h2>Sorry no items yet!</h2>
                 </th:block>
                 <th:block th:each="item : ${container.getItems()}">
-                <div class="d-flex h-25 w-75 border border-primary mt-3">
-                    <a th:href="@{/item/{id}(id=${item.getId()})}"><h3><span th:text="${item.getName()}"></span></h3></a>
-                </div>
+                    <div class="card p-0 m-2" style="width: 18rem;">
+                        <a th:href="@{/item/{id}(id=${item.getId()})}">
+                            <img th:src="${item.getImageUrl()}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <p th:text="${item.getName()}" class="card-text"></p>
+                            </div>
+                        </a>
+                    </div>
                 </th:block>
             </div>
         </div>
