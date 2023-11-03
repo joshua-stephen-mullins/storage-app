@@ -12,10 +12,10 @@
 <body>
     <nav th:replace="~{partials.html :: navbar}"></nav>
 
-    <section class="vh-100">
-        <div class="container h-100 d-flex flex-column justify-content-center align-items-center">
+    <section class="">
+        <div class="container d-flex flex-column justify-content-center align-items-center">
             <h1>Collections</h1>
-            <div class="row border border-primary justify-content-center align-content-start w-75 h-75">
+            <div class="row justify-content-center align-content-start w-75">
                 <th:block th:if="${collections.size()} == 0">
                 <div class="d-flex h-25 w-75 border border-primary mt-3">
                     <h3>No collections yet!</h3>

@@ -12,11 +12,11 @@
 <body>
     <nav th:replace="~{partials.html :: navbar}" ></nav>
 
-    <section class="vh-100">
-        <div class="container h-100 d-flex flex-column justify-content-center align-items-center">
+    <section class="">
+        <div class="container d-flex flex-column justify-content-center align-items-center">
             <h1><span th:text="${collection.getName()}"></span></h1>
             <h3><span th:text="${collection.getDescription()}"></span></h3>
-            <div class="row border border-primary justify-content-center align-content-start w-75 h-75">
+            <div class="row border border-primary justify-content-center align-content-start w-75">
                 <h2>Containers</h2>
                 <div class="d-flex h-25 col-3 border border-primary mt-3">
                     <h3><a th:href="@{/create-container/{id}(id=${collection.getId()})}"> + Create Container</a></h3>
