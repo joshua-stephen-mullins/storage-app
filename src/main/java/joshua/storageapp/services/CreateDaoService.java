@@ -39,6 +39,9 @@ public class CreateDaoService {
 
     public void createItem(Item item) {
         item.setImageUrl("https://placehold.co/600x400");
+        for (Tag tag : item.getTags()){
+            System.out.println(tag.getName());
+        }
         itemDao.save(item);
     }
 

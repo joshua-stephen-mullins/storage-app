@@ -71,7 +71,7 @@ public class CreateController {
         Set<Tag> tagSet = new HashSet<Tag>();
         for (String tagName : tagsArray) {
             if (createDao.checkIfTagExists(tagName)) {
-                tagSet.add(createDao.findTagByName(name));
+                tagSet.add(createDao.findTagByName(tagName));
             } else {
                 Tag newTag = new Tag(tagName);
                 createDao.createTag(newTag);
