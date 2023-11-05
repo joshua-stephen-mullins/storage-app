@@ -18,7 +18,7 @@ public class Tag {
     private String name;
 
     @ManyToMany(mappedBy = "tags")
-    Set<Item> items;
+    private Set<Item> items;
 
     // Getters
     public long getId() {

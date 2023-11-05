@@ -34,7 +34,7 @@ public class Item {
 
     @ManyToMany
     @JoinTable(name = "item_tags", joinColumns = @JoinColumn(name = "items"), inverseJoinColumns = @JoinColumn(name = "tags"))
-    Set<Tag> tags;
+    private Set<Tag> tags;
 
     // Getters
     public long getId() {

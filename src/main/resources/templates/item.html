@@ -11,12 +11,11 @@
 
     <section class="body">
         <div class="row d-flex flex-column justify-content-center align-items-center">
-            <img th:src="${item.getImageUrl()}" class="col-lg-4 col-sm-10 rounded-4 m-1" alt="">
+            <img th:src="${item.getImageUrl()}" class="col-lg-4 col-sm-10 rounded-2 m-1" alt="">
             <h1 class="col-lg-4 col-sm-10"><span th:text="${item.getName()}"></span></h1>
             <h3 class="col-lg-4 col-sm-10"><span th:text="${item.getDescription()}"></span></h3>
             <div class="d-flex flex-row row">
                 <th:block th:each="tag : ${item.getTags()}">
-                    <!-- <h5><span th:text="${tag.getName()}"></span></h5> -->
                     <span th:text="${tag.getName()}" class="badge rounded-pill text-bg-primary col-1"></span>
                 </th:block>
             </div>

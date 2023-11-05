@@ -20,8 +20,10 @@
                     <div class="card p-0 m-2" style="width: 18rem;">
                         <a th:href="@{/collection/{id}(id=${collection.getId()})}">
                             <img th:src="${collection.getImageUrl()}" class="card-img-top" alt="">
-                            <div class="card-body rounded-bottom-2">
-                                <p th:text="${collection.getName()}" class="card-title"></p>
+                            <div class="card-body rounded-bottom-2 row m-0 border border-1">
+                                <h5 th:text="${collection.getName()}" class="card-title col-8"></h5>
+                                <p th:text="${collection.getContainers().size()}" class="card-title col-2"></p>
+                                <p th:text="${collection.getItems().size()}" class="card-title col-2"></p>
                             </div>
                         </a>
                     </div>
