@@ -2,8 +2,6 @@ package joshua.storageapp.services;
 
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import joshua.storageapp.models.User;
@@ -22,9 +20,15 @@ public class UserDaoService {
     public void registerUser (User user){
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
-        user.setCreated(new Date());
-        user.setIsAdmin(false);
         userDao.save(user);
+    }
+
+    public void saveUser(User user){
+        userDao.save(user);
+    }
+
+    public User getUserByUsername(String username){
+        return userDao.findByUsername(username);
     }
     
 }

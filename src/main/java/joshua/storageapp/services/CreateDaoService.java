@@ -26,22 +26,15 @@ public class CreateDaoService {
         this.tagDao = tagDao;
     }
 
-    public void createCollection(Collection collection) {
-        collection.setCreated(new Date());
-        collection.setImageUrl("https://placehold.co/600x400");
+    public void saveCollection(Collection collection) {
         collectionDao.save(collection);
     }
 
-    public void createContainer(Container container) {
-        container.setImageUrl("https://placehold.co/600x400");
+    public void saveContainer(Container container) {
         containerDao.save(container);
     }
 
-    public void createItem(Item item) {
-        item.setImageUrl("https://placehold.co/600x400");
-        for (Tag tag : item.getTags()){
-            System.out.println(tag.getName());
-        }
+    public void saveItem(Item item) {
         itemDao.save(item);
     }
 

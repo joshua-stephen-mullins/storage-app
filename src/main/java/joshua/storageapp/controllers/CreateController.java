@@ -33,7 +33,9 @@ public class CreateController {
     @PostMapping("/create-collection")
     public String createCollection(@ModelAttribute Collection collection) {
         collection.setUser((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-        createDao.createCollection(collection);
+        collection.setCreated(new Date());
+        collection.setImageUrl("https://placehold.co/600x400");
+        createDao.saveCollection(collection);
         return "redirect:/user";
     }
 
@@ -49,7 +51,8 @@ public class CreateController {
             @RequestParam(name = "description") String description) {
         long collectionId = id;
         Container container = new Container(createDao.findCollectionById(collectionId), new Date(), name, description);
-        createDao.createContainer(container);
+        container.setImageUrl("https://placehold.co/600x400");
+        createDao.saveContainer(container);
         return "redirect:/collection/" + id;
     }
 
@@ -78,7 +81,8 @@ public class CreateController {
             }
         }
         item.setTags(tagSet);
-        createDao.createItem(item);
+        item.setImageUrl("https://placehold.co/600x400");
+        createDao.saveItem(item);
         return "redirect:/container/" + id;
     }
 

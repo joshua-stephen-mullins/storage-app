@@ -1,0 +1,42 @@
+<!DOCTYPE htm>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+    <title>Edit Item</title>
+    <head th:replace="~{partials.html :: head}"></head>
+
+
+<body>
+
+    <nav th:replace="~{partials.html :: navbar}" ></nav>
+
+    <section class="body">
+        <div class="container h-100 d-flex justify-content-center align-items-center">
+            <div class="row justify-content-center align-items-center w-75 h-75">
+                <h1>Create Item</h1>
+                <form th:action="@{/edit-item/{id}(id=${item.getId()})}" th:method="post" th:object="${item}" id="itemForm">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Item Name</label>
+                        <input th:field="*{name}" th:value="${item.getName()}" type="text" class="form-control" id="name" aria-describedby="nameHelp">
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <input th:field="*{description}" th:value="${item.getDescription()}"type="text" class="form-control" id="description" aria-describedby="descriptionHelp">
+                    </div>
+                    <div class="mb-3">
+                        <label for="quantity" class="form-label">Quantity</label>
+                        <input th:field="*{quantity}" th:value="${item.getQuantity()}" type="number" class="form-control" id="quantity" aria-describedby="quantityHelp">
+                    </div>
+                    <div class="mb-3">
+                        <label for="tags" class="form-label">Tags</label>
+                        <input th:field="*{tags}" th:value="${tags}" type="text" class="form-control" id="tags" aria-describedby="tagsHelp">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+</body>
+
+</html>
