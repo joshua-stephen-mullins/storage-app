@@ -12,7 +12,7 @@
     <section class="body">
         <div class="container h-100 d-flex justify-content-center align-items-center">
             <div class="row justify-content-center align-items-center w-75 h-75">
-                <h1>Create Item</h1>
+                <h1>Edir Item</h1>
                 <form th:action="@{/edit-item/{id}(id=${item.getId()})}" th:method="post" th:object="${item}" id="itemForm">
                     <div class="mb-3">
                         <label for="name" class="form-label">Item Name</label>
@@ -28,7 +28,9 @@
                     </div>
                     <div class="mb-3">
                         <label for="tags" class="form-label">Tags</label>
-                        <input th:field="*{tags}" th:value="${tags}" type="text" class="form-control" id="tags" aria-describedby="tagsHelp">
+                        <input th:name="*{tags}" hidden>
+                        <input name="tagsString" th:value="${tagsString}" type="text" class="form-control" id="tags" aria-describedby="tagsHelp">
+                        <!-- <input th:name="*{tags}" th:value="${tagsString}" type="text" class="form-control" id="tags" aria-describedby="tagsHelp"> -->
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>

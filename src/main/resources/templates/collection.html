@@ -1,21 +1,25 @@
 <!DOCTYPE htm>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-    <title th:text="${collection.getName()}"></title>
-    <head th:replace="~{partials.html :: head}"></head>
+<title th:text="${collection.getName()}"></title>
+
+<head th:replace="~{partials.html :: head}"></head>
 
 
 <body>
-    <nav th:replace="~{partials.html :: navbar}" ></nav>
+    <nav th:replace="~{partials.html :: navbar}"></nav>
 
     <section class="body">
         <div class="container d-flex flex-column justify-content-center align-items-center">
-            <h1 class="text-center"><span th:text="${collection.getName()}"></span></h1>
+            <h1 class="text-center"><span th:text="${collection.getName()}"></span> <a
+                    th:href="@{/edit-collection/{id}(id=${collection.getId()})}"><i
+                        class="fa-solid fa-pen-to-square editLink"></i></a>
+            </h1>
+
             <h3><span th:text="${collection.getDescription()}"></span></h3>
             <div class="row justify-content-center align-content-start w-75">
                 <hr>
                 <h2 class="text-center">Containers</h2>
-                
                 <div class="card p-0 m-2" style="width: 18rem;">
                     <a th:href="@{/create-container/{id}(id=${collection.getId()})}">
                         <div class="card-body">
@@ -28,26 +32,26 @@
                     <h2>Sorry no conainters yet!</h2>
                 </th:block>
                 <th:block th:each="container : ${collection.getContainers()}">
-                <div class="card p-0 m-2" style="width: 18rem;">
-                    <a th:href="@{/container/{id}(id=${container.getId()})}">
-                        <img th:src="${container.getImageUrl()}" class="card-img-top" alt="...">
-                        <div class="card-body rounded-bottom-2">
-                            <p th:text="${container.getName()}" class="card-text"></p>
-                        </div>
-                    </a>
-                </div>
+                    <div class="card p-0 m-2" style="width: 18rem;">
+                        <a th:href="@{/container/{id}(id=${container.getId()})}">
+                            <img th:src="${container.getImageUrl()}" class="card-img-top" alt="...">
+                            <div class="card-body rounded-bottom-2">
+                                <p th:text="${container.getName()}" class="card-text"></p>
+                            </div>
+                        </a>
+                    </div>
                 </th:block>
                 <hr>
                 <h2 class="text-center">Items</h2>
                 <th:block th:each="item : ${collection.getItems()}">
-                <div class="card p-0 m-2" style="width: 18rem;">
-                    <a th:href="@{/item/{id}(id=${item.getId()})}">
-                        <img th:src="${item.getImageUrl()}" class="card-img-top" alt="...">
-                        <div class="card-body rounded-bottom-2">
-                            <p th:text="${item.getName()}" class="card-text"></p>
-                        </div>
-                    </a>
-                </div>
+                    <div class="card p-0 m-2" style="width: 18rem;">
+                        <a th:href="@{/item/{id}(id=${item.getId()})}">
+                            <img th:src="${item.getImageUrl()}" class="card-img-top" alt="...">
+                            <div class="card-body rounded-bottom-2">
+                                <p th:text="${item.getName()}" class="card-text"></p>
+                            </div>
+                        </a>
+                    </div>
                 </th:block>
             </div>
         </div>

@@ -23,3 +23,7 @@ a {
 body {
     font-family: 'Roboto', sans-serif;
 }
+
+.editLink {
+    color: #222222;
+}

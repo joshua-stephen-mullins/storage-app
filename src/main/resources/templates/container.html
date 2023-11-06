@@ -10,7 +10,9 @@
 
     <section class="body">
         <div class="container d-flex flex-column justify-content-center align-items-center">
-            <h1><span th:text="${container.getName()}"></span></h1>
+            <h1><span th:text="${container.getName()}"></span><a
+                th:href="@{/edit-container/{id}(id=${container.getId()})}"> <i
+                    class="fa-solid fa-pen-to-square editLink"></i></a></h1>
             <h3><span th:text="${container.getDescription()}"></span></h3>
             <div class="row justify-content-center align-content-start w-75">
                 <hr>

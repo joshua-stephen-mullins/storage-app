@@ -76,14 +76,15 @@ public class EditController {
                 tagsString += tag.getName() + " ";
             }
             model.addAttribute("item", item);
-            model.addAttribute("tags", tagsString);
+            model.addAttribute("tagsString", tagsString);
+            System.out.println(tagsString);
             return "editItem";
         }
     }
 
     @PostMapping("/edit-item/{id}")
     public String editItem(@PathVariable long id, @RequestParam(name = "name") String name,
-            @RequestParam(name = "description") String description, @RequestParam(name = "quantity") int quantity, @RequestParam(name = "tags") String tags) {
+            @RequestParam(name = "description") String description, @RequestParam(name = "quantity") int quantity, @RequestParam(name = "tagsString") String tags) {
         Item item = createDao.findItemById(id);
         item.setName(name);
         item.setQuantity(quantity);
