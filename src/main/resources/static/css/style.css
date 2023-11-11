@@ -27,3 +27,7 @@ body {
 .editLink {
     color: #222222;
 }
+
+.userImg {
+    object-fit: cover;
+}

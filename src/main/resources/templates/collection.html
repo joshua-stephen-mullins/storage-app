@@ -18,7 +18,7 @@
 
             <h3><span th:text="${collection.getDescription()}"></span></h3>
             <div class="row justify-content-center align-content-start w-75">
-                <hr>
+                <hr class="mt-2 mb-2">
                 <h2 class="text-center">Containers</h2>
                 <div class="card p-0 m-2" style="width: 18rem;">
                     <a th:href="@{/create-container/{id}(id=${collection.getId()})}">
@@ -34,19 +34,19 @@
                 <th:block th:each="container : ${collection.getContainers()}">
                     <div class="card p-0 m-2" style="width: 18rem;">
                         <a th:href="@{/container/{id}(id=${container.getId()})}">
-                            <img th:src="${container.getImageUrl()}" class="card-img-top" alt="...">
+                            <img th:src="${container.getImageUrl()}" class="card-img-top userImg" alt="...">
                             <div class="card-body rounded-bottom-2">
                                 <p th:text="${container.getName()}" class="card-text"></p>
                             </div>
                         </a>
                     </div>
                 </th:block>
-                <hr>
+                <hr class="mt-2 mb-2">
                 <h2 class="text-center">Items</h2>
                 <th:block th:each="item : ${collection.getItems()}">
                     <div class="card p-0 m-2" style="width: 18rem;">
                         <a th:href="@{/item/{id}(id=${item.getId()})}">
-                            <img th:src="${item.getImageUrl()}" class="card-img-top" alt="...">
+                            <img th:src="${item.getImageUrl()}" class="card-img-top userImg" alt="...">
                             <div class="card-body rounded-bottom-2">
                                 <p th:text="${item.getName()}" class="card-text"></p>
                             </div>

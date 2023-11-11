@@ -11,6 +11,7 @@
 
     <section class="body">
         <div class="row d-flex flex-column justify-content-center align-items-center">
+            <h5><a th:text="${item.getContainer().getCollection().getName()}" th:href="@{/collection/{id}(id=${item.getContainer().getCollection().getId()})}"></a> <i class="fa-solid fa-chevron-right"></i> <a th:text="${item.getContainer().getName()}" th:href="@{/container/{id}(id=${item.getContainer().getId()})}"></a> <i class="fa-solid fa-chevron-right"></i> <a th:text="${item.getName()}" th:href="@{/item/{id}(id=${item.getId()})}"></a></h5>
             <img th:src="${item.getImageUrl()}" class="col-lg-4 col-sm-10 rounded-2 m-1" alt="">
             <h1 class="col-lg-4 col-sm-10"><span th:text="${item.getName()}"></span> <a
                 th:href="@{/edit-item/{id}(id=${item.getId()})}"><i

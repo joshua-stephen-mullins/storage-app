@@ -10,6 +10,7 @@
 
     <section class="body">
         <div class="container d-flex flex-column justify-content-center align-items-center">
+            <h5><a th:text="${container.getCollection().getName()}" th:href="@{/collection/{id}(id=${container.getCollection().getId()})}"></a> <i class="fa-solid fa-chevron-right"></i> <a th:text="${container.getName()}" th:href="@{/container/{id}(id=${container.getId()})}"></a></h5>
             <h1><span th:text="${container.getName()}"></span><a
                 th:href="@{/edit-container/{id}(id=${container.getId()})}"> <i
                     class="fa-solid fa-pen-to-square editLink"></i></a></h1>

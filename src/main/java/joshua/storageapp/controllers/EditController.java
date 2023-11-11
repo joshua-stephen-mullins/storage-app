@@ -84,10 +84,11 @@ public class EditController {
 
     @PostMapping("/edit-item/{id}")
     public String editItem(@PathVariable long id, @RequestParam(name = "name") String name,
-            @RequestParam(name = "description") String description, @RequestParam(name = "quantity") int quantity, @RequestParam(name = "tagsString") String tags) {
+            @RequestParam(name = "description") String description, @RequestParam(name = "quantity") int quantity, @RequestParam(name = "tagsString") String tags, @RequestParam(name = "imageUrl") String imageUrl) {
         Item item = createDao.findItemById(id);
         item.setName(name);
         item.setQuantity(quantity);
+        item.setImageUrl(imageUrl);
         item.setDescription(description);
                 String[] tagsArray = tags.split(" ");
         Set<Tag> tagSet = new HashSet<Tag>();
