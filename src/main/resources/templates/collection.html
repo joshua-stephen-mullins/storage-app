@@ -32,9 +32,10 @@
                     <h2>Sorry no conainters yet!</h2>
                 </th:block>
                 <th:block th:each="container : ${collection.getContainers()}">
-                    <div class="card p-0 m-2" style="width: 18rem;">
+                    <div class="card p-0 m-2">
                         <a th:href="@{/container/{id}(id=${container.getId()})}">
-                            <img th:src="${container.getImageUrl()}" class="card-img-top userImg" alt="...">
+                            <img th:src="${container.getImageUrl()}" class="card-img-top userImg col-8"
+                                alt="Container Image">
                             <div class="card-body rounded-bottom-2">
                                 <p th:text="${container.getName()}" class="card-text"></p>
                             </div>
@@ -43,10 +44,26 @@
                 </th:block>
                 <hr class="mt-2 mb-2">
                 <h2 class="text-center">Items</h2>
-                <th:block th:each="item : ${collection.getItems()}">
-                    <div class="card p-0 m-2" style="width: 18rem;">
+                <!-- Search bar -->
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
+                    <button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button>
+                  </div>
+                <!-- Dropdown button for sort -->
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <i class="fa-solid fa-filter"></i>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Date Added</a></li>
+                        <li><a class="dropdown-item" href="#">Name</a></li>
+                    </ul>
+                </div>
+                <th:block th:each="item : ${items}">
+                    <div class="card p-0 m-2">
                         <a th:href="@{/item/{id}(id=${item.getId()})}">
-                            <img th:src="${item.getImageUrl()}" class="card-img-top userImg" alt="...">
+                            <img th:src="${item.getImageUrl()}" class="card-img-top userImg col-8" alt="Item Image">
                             <div class="card-body rounded-bottom-2">
                                 <p th:text="${item.getName()}" class="card-text"></p>
                             </div>

@@ -20,6 +20,7 @@ public class ViewController {
     @GetMapping("/collection/{id}")
     public String viewCollection(@PathVariable long id, Model model){
         model.addAttribute("collection", createDao.findCollectionById(id));
+        model.addAttribute("items", createDao.findCollectionById(id).getItems());
         return "/collection";
     }
 

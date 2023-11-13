@@ -18,7 +18,7 @@
             <div class="row justify-content-center align-content-start w-75">
                 <hr>
                 <h2>Items</h2>
-                <div class="card p-0 m-2" style="width: 18rem;">
+                <div class="card p-0 m-2">
                     <a th:href="@{/create-item/{id}(id=${container.getId()})}">
                         <div class="card-body">
                             <h2 class="card-text">Create an Item</h2>
@@ -29,9 +29,9 @@
                     <h2>Sorry no items yet!</h2>
                 </th:block>
                 <th:block th:each="item : ${container.getItems()}">
-                    <div class="card p-0 m-2" style="width: 18rem;">
+                    <div class="card p-0 m-2">
                         <a th:href="@{/item/{id}(id=${item.getId()})}">
-                            <img th:src="${item.getImageUrl()}" class="card-img-top" alt="...">
+                            <img th:src="${item.getImageUrl()}" class="card-img-top userImg col-8" alt="Item Image">
                             <div class="card-body rounded-bottom-2">
                                 <p th:text="${item.getName()}" class="card-text"></p>
                             </div>
