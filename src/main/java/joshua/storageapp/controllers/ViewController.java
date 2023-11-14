@@ -24,6 +24,22 @@ public class ViewController {
         return "/collection";
     }
 
+    @GetMapping("/collection/{id}?{sortType}")
+    public String viewCollectionSorted(@PathVariable long id, @PathVariable String sortType, Model model){
+        model.addAttribute("collection", createDao.findCollectionById(id));
+
+        switch (sortType) {
+            case "name" -> model.addAttribute("items", createDao.findCollectionById(id).getItems());
+            case "date" -> model.addAttribute("items", createDao.findCollectionById(id).getItems());
+            
+            default -> model.addAttribute("items", createDao.findCollectionById(id).getItems());
+        }
+        
+        return "/collection";
+    }
+
+    
+
     @GetMapping("/container/{id}")
     public String viewContainer(@PathVariable long id, Model model){
         model.addAttribute("container", createDao.findContainerById(id));
