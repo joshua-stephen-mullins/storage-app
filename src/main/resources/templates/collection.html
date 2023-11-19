@@ -56,8 +56,12 @@
                         <i class="fa-solid fa-filter"></i>
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Date Added</a></li>
-                        <li><a class="dropdown-item" href="#">Name</a></li>
+                        <li><a class="dropdown-item" th:href="@{/collection/{id}/date-asc(id=${collection.getId()})}">Date Added Ascending</a></li>
+                        <li><a class="dropdown-item" th:href="@{/collection/{id}/date-desc(id=${collection.getId()})}">Date Added Descending</a></li>
+                        <li><a class="dropdown-item" th:href="@{/collection/{id}/name-asc(id=${collection.getId()})}">Name Ascending</a></li>
+                        <li><a class="dropdown-item" th:href="@{/collection/{id}/name-des(id=${collection.getId()})}">Name Descending</a></li>
+                        <li><a class="dropdown-item" th:href="@{/collection/{id}/quantity-asc(id=${collection.getId()})}">Quantity Ascending</a></li>
+                        <li><a class="dropdown-item" th:href="@{/collection/{id}/quantity-des(id=${collection.getId()})}">Quantity Descending</a></li>
                     </ul>
                 </div>
                 <th:block th:each="item : ${items}">
