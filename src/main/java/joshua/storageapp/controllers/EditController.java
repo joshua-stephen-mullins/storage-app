@@ -35,10 +35,11 @@ public class EditController {
 
     @PostMapping("/edit-collection/{id}")
     public String editCollection(@PathVariable long id, @RequestParam(name = "name") String name,
-            @RequestParam(name = "description") String description) {
+            @RequestParam(name = "description") String description, @RequestParam(name = "imageUrl") String imageUrl) {
         Collection collection = createDao.findCollectionById(id);
         collection.setName(name);
         collection.setDescription(description);
+        collection.setImageUrl(imageUrl);
         createDao.saveCollection(collection);
         return "redirect:/collection/" + collection.getId();
     }
@@ -56,9 +57,10 @@ public class EditController {
 
     @PostMapping("/edit-container/{id}")
     public String editContainer(@PathVariable long id, @RequestParam(name = "name") String name,
-            @RequestParam(name = "description") String description) {
+            @RequestParam(name = "description") String description, @RequestParam(name = "imageUrl") String imageUrl) {
         Container container = createDao.findContainerById(id);
         container.setName(name);
+        container.setImageUrl(imageUrl);
         container.setDescription(description);
         createDao.saveContainer(container);
         return "redirect:/container/" + container.getId();

@@ -10,7 +10,7 @@
     <nav th:replace="~{partials.html :: navbar}" ></nav>
 
     <section class="body">
-        <div class="container h-100 d-flex justify-content-center align-items-center">
+        <div class="row justify-content-center align-items-center">
             <div class="row justify-content-center align-items-center w-75 h-75">
                 <h1>Edit Container</h1>
                 <form th:action="@{/edit-container/{id}(id=${container.getId()})}" th:method="post" th:object="${container}" id="containerForm">
@@ -21,6 +21,10 @@
                     <div class="mb-3">
                         <label for="description" class="form-label">Description</label>
                         <input th:field="*{description}" th:value="${container.getDescription()}" type="text" class="form-control" id="description" aria-describedby="descriptionHelp">
+                    </div>
+                    <div class="mb-3">
+                        <label for="imageUrl" class="form-label">Image Url</label>
+                        <input th:field="*{imageUrl}" th:value="${container.getImageUrl()}" type="text" class="form-control" id="imageUrl" aria-describedby="quantityHelp">
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>

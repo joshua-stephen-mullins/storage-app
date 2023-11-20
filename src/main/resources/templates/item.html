@@ -17,9 +17,9 @@
                     th:href="@{/container/{id}(id=${item.getContainer().getId()})}"></a> <i
                     class="fa-solid fa-chevron-right"></i> <a th:text="${item.getName()}"
                     th:href="@{/item/{id}(id=${item.getId()})}"></a></h5>
-            <div class="col-lg-4 col-sm-10 rounded-2 border border-2 row flex-column align-items-center p-0">
+            <div class="col-10 col-md-6 col-lg-4 col-sm-10 rounded-2 border border-2 row flex-column align-items-center align-content-center p-0">
                 <img th:src="${item.getImageUrl()}" class="col-12 rounded-top p-0" alt="Item Image">
-                <h1 class="col-12"><span th:text="${item.getName()}"></span> <a
+                <h1 class="col-12 m-2"><span th:text="${item.getName()}"></span> <a
                         th:href="@{/edit-item/{id}(id=${item.getId()})}"><i
                             class="fa-solid fa-pen-to-square editLink"></i></a></h1>
                 <h3 class="col-12"><span th:text="${item.getDescription()}"></span></h3>

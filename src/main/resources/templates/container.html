@@ -33,7 +33,7 @@
                         <a th:href="@{/item/{id}(id=${item.getId()})}">
                             <img th:src="${item.getImageUrl()}" class="card-img-top userImg col-8" alt="Item Image">
                             <div class="card-body rounded-bottom-2">
-                                <p th:text="${item.getName()}" class="card-text"></p>
+                                <h5 th:text="${item.getName()}" class="card-text"></h5>
                             </div>
                         </a>
                     </div>
