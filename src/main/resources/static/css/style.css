@@ -9,6 +9,7 @@ nav {
 
 .body {
     padding-top: 1rem;
+    padding-bottom: 1rem;
 }
 
 .card-body {
@@ -37,4 +38,8 @@ body {
 .card {
     width: 18rem;
     /* height: 18rem; */
+}
+
+.tag {
+    width: auto;
 }

@@ -10,7 +10,7 @@
     <nav th:replace="~{partials.html :: navbar}" ></nav>
 
     <section class="body">
-        <div class="container h-100 d-flex justify-content-center align-items-center">
+        <div class="row justify-content-center align-items-center">
             <div class="row justify-content-center align-items-center w-75 h-75">
                 <h1>Edit Item</h1>
                 <form th:action="@{/edit-item/{id}(id=${item.getId()})}" th:method="post" th:object="${item}" id="itemForm">
