@@ -70,4 +70,8 @@ public class CreateDaoService {
         }
     }
 
+    public List<Item> getItemsBySearchTerm(String searchTerm){
+        return itemDao.findItemsBySearchTerm(searchTerm);
+    }
+
 }

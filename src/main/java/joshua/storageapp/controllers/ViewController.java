@@ -26,27 +26,40 @@ public class ViewController {
     public String viewCollectionSorted(@PathVariable long id, @PathVariable String sortType, Model model) {
         model.addAttribute("collection", createDao.findCollectionById(id));
 
-        if (sortType.equals("name-asc")){
+        if (sortType.equals("name-asc")) {
             List<Item> nameSorted = (createDao.findCollectionById(id).getItems());
             Collections.sort(nameSorted, new SortByName());
             model.addAttribute("items", nameSorted);
-        } else if (sortType.equals("name-des")){
+        } else if (sortType.equals("name-des")) {
             List<Item> nameSorted = (createDao.findCollectionById(id).getItems());
             Collections.sort(nameSorted, new SortByName());
             Collections.reverse(nameSorted);
             model.addAttribute("items", nameSorted);
-        } else if (sortType.equals("date")){
+        } else if (sortType.equals("date")) {
             model.addAttribute("items", createDao.findCollectionById(id).getItems());
-        } else if (sortType.equals("quantity-asc")){
+        } else if (sortType.equals("quantity-asc")) {
             model.addAttribute("items", quantitySort(createDao.findCollectionById(id).getItems()));
-        } else if (sortType.equals("quantity-des")){
+        } else if (sortType.equals("quantity-des")) {
             List<Item> descSorted = quantitySort(createDao.findCollectionById(id).getItems());
             Collections.reverse(descSorted);
             model.addAttribute("items", descSorted);
         } else {
             model.addAttribute("items", createDao.findCollectionById(id).getItems());
         }
+        return "/collection";
+    }
 
+    @GetMapping("/collection/{id}/search={searchTerm}")
+    public String viewCollectionWithSearchTerm(@PathVariable long id, @PathVariable String searchTerm, Model model) {
+        model.addAttribute("collection", createDao.findCollectionById(id));
+        List<Item> items = createDao.getItemsBySearchTerm(searchTerm);
+        ArrayList<Item> filteredItems = new ArrayList<>();
+        for (Item item : items){
+            if (item.getContainer().getCollection().getId() == id){
+                filteredItems.add(item);
+            }
+        }
+        model.addAttribute("items", filteredItems);
         return "/collection";
     }
 
@@ -54,6 +67,10 @@ public class ViewController {
     public String viewCollection(@PathVariable long id, Model model) {
         model.addAttribute("collection", createDao.findCollectionById(id));
         model.addAttribute("items", createDao.findCollectionById(id).getItems());
+        List<Item> test = createDao.getItemsBySearchTerm("dragon");
+        for (Item item : test){
+            System.out.println(">" + item.getName() + "<");
+        }
         return "/collection";
     }
 
@@ -102,45 +119,4 @@ public class ViewController {
         return listCopy;
     }
 
-        public static List<Item> nameSort(List<Item> sl) {
-        List<Item> listCopy = new ArrayList<>(sl);
-        // Declares variables for the startScan, index, minIndex and minValue.
-        int startScan, index, minIndex;
-        Item minValue;
-        // Loop that runs once for each item in the arraylist.
-        for (startScan = 0; startScan < (listCopy.size() - 1); startScan++) {
-            // Sets minIndex equal to the counter variable for the loop.
-            minIndex = startScan;
-            // Sets the minValue as to the song object at the index of the startScan.
-            minValue = listCopy.get(startScan);
-            // Loop that starts at startScan + 1, and compares each songs popularity score
-            // to the score of the song stored in minValue.
-            for (index = startScan + 1; index < listCopy.size(); index++) {
-
-                // If the song at the index of the nested loops popularity is less than the song
-                // stored in minValue, minValue and minIndex are reassigned to the current
-                // index.
-                int lessLength;
-                if (listCopy.get(index).getName().length() < minValue.getName().length()){
-                    lessLength = listCopy.get(index).getName().length();
-                } else {
-                    lessLength = minValue.getName().length();
-                }
-                for (int i = 0; i < lessLength; i++){
-                    if (listCopy.get(index).getName().charAt(i) < minValue.getName().charAt(i)) {
-                        minValue = listCopy.get(index);
-                        minIndex = index;
-                        break;
-                    } else if (!(listCopy.get(index).getName().charAt(i) < minValue.getName().charAt(i))){
-                        break;
-                    }
-                }
-            }
-            // Reassigns the order of the original arraylist according the minIndex and
-            // startScan variables.
-            listCopy.set(minIndex, listCopy.get(startScan));
-            listCopy.set(startScan, minValue);
-        }
-        return listCopy;
-    }
 }

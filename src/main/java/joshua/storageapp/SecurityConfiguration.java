@@ -40,7 +40,7 @@ public class SecurityConfiguration {
                 /*
                  * Pages that require authentication
                  */
-                .requestMatchers("/create-collection", "/user", "create-container/{id}", "/collection/{id}", "create-container", "create-item/{id}", "container/{id}", "item/{id}", "edit-collection/{id}", "edit-container/{id}", "edit-item/{id}", "edit-user", "collection/{id}/{sortType}").authenticated()
+                .requestMatchers("/create-collection", "/user", "create-container/{id}", "/collection/{id}", "create-container", "create-item/{id}", "container/{id}", "item/{id}", "edit-collection/{id}", "edit-container/{id}", "edit-item/{id}", "edit-user", "collection/{id}/{sortType}", "/collection/{id}/search={searchTerm}").authenticated()
                 /*
                  * Pages that do not require authentication
                  * anyone can visit the home page, register, and login
