@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import joshua.storageapp.models.Item;
 import joshua.storageapp.models.SortByName;
@@ -49,8 +50,8 @@ public class ViewController {
         return "/collection";
     }
 
-    @GetMapping("/collection/{id}/search={searchTerm}")
-    public String viewCollectionWithSearchTerm(@PathVariable long id, @PathVariable String searchTerm, Model model) {
+    @GetMapping("/collection/{id}/search")
+    public String viewCollectionWithSearchTerm(@PathVariable long id, @RequestParam("search") String searchTerm, Model model) {
         model.addAttribute("collection", createDao.findCollectionById(id));
         List<Item> items = createDao.getItemsBySearchTerm(searchTerm);
         ArrayList<Item> filteredItems = new ArrayList<>();
@@ -67,10 +68,6 @@ public class ViewController {
     public String viewCollection(@PathVariable long id, Model model) {
         model.addAttribute("collection", createDao.findCollectionById(id));
         model.addAttribute("items", createDao.findCollectionById(id).getItems());
-        List<Item> test = createDao.getItemsBySearchTerm("dragon");
-        for (Item item : test){
-            System.out.println(">" + item.getName() + "<");
-        }
         return "/collection";
     }
 

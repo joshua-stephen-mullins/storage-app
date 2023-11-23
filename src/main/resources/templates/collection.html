@@ -45,10 +45,13 @@
                 <hr class="mt-2 mb-2">
                 <h2 class="text-center">Items</h2>
                 <!-- Search bar -->
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
-                    <button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button>
-                  </div>
+                <form th:action="@{/collection/{id}/search(id=${collection.getId()})}" th:method="get">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" name="search" placeholder="Item Search" aria-label="Item search"
+                            aria-describedby="button-addon2">
+                        <button class="btn btn-outline-secondary" type="submit" id="itemSearchButton">Button</button>
+                    </div>
+                </form>
                 <!-- Dropdown button for sort -->
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
@@ -56,12 +59,24 @@
                         <i class="fa-solid fa-filter"></i>
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" th:href="@{/collection/{id}/date-asc(id=${collection.getId()})}">Date Added Ascending</a></li>
-                        <li><a class="dropdown-item" th:href="@{/collection/{id}/date-desc(id=${collection.getId()})}">Date Added Descending</a></li>
-                        <li><a class="dropdown-item" th:href="@{/collection/{id}/name-asc(id=${collection.getId()})}">Name Ascending</a></li>
-                        <li><a class="dropdown-item" th:href="@{/collection/{id}/name-des(id=${collection.getId()})}">Name Descending</a></li>
-                        <li><a class="dropdown-item" th:href="@{/collection/{id}/quantity-asc(id=${collection.getId()})}">Quantity Ascending</a></li>
-                        <li><a class="dropdown-item" th:href="@{/collection/{id}/quantity-des(id=${collection.getId()})}">Quantity Descending</a></li>
+                        <li><a class="dropdown-item"
+                                th:href="@{/collection/{id}/date-asc(id=${collection.getId()})}">Date Added
+                                Ascending</a></li>
+                        <li><a class="dropdown-item"
+                                th:href="@{/collection/{id}/date-desc(id=${collection.getId()})}">Date Added
+                                Descending</a></li>
+                        <li><a class="dropdown-item"
+                                th:href="@{/collection/{id}/name-asc(id=${collection.getId()})}">Name Ascending</a>
+                        </li>
+                        <li><a class="dropdown-item"
+                                th:href="@{/collection/{id}/name-des(id=${collection.getId()})}">Name Descending</a>
+                        </li>
+                        <li><a class="dropdown-item"
+                                th:href="@{/collection/{id}/quantity-asc(id=${collection.getId()})}">Quantity
+                                Ascending</a></li>
+                        <li><a class="dropdown-item"
+                                th:href="@{/collection/{id}/quantity-des(id=${collection.getId()})}">Quantity
+                                Descending</a></li>
                     </ul>
                 </div>
                 <th:block th:each="item : ${items}">
