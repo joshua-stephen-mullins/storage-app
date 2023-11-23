@@ -28,6 +28,9 @@ public class Tag {
         return name;
     }
 
+    public Set<Item> getItems() {
+        return items;
+    }
     // Setters
     public void setId(long id) {
         this.id = id;

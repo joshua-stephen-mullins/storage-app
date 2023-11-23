@@ -47,8 +47,8 @@
                 <!-- Search bar -->
                 <form th:action="@{/collection/{id}/search(id=${collection.getId()})}" th:method="get">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" name="search" placeholder="Item Search" aria-label="Item search"
-                            aria-describedby="button-addon2">
+                        <input type="text" class="form-control" name="search" placeholder="Item Search"
+                            aria-label="Item search" aria-describedby="button-addon2">
                         <button class="btn btn-outline-secondary" type="submit" id="itemSearchButton">Button</button>
                     </div>
                 </form>
@@ -79,6 +79,9 @@
                                 Descending</a></li>
                     </ul>
                 </div>
+                <th:block th:if="${items.size() == 0}">
+                    <h2 class="text-center m-2">No Items to Display!</h2>
+                </th:block>
                 <th:block th:each="item : ${items}">
                     <div class="card p-0 m-2">
                         <a th:href="@{/item/{id}(id=${item.getId()})}">

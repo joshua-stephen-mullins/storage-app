@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import joshua.storageapp.models.Item;
 import joshua.storageapp.models.SortByName;
+import joshua.storageapp.models.Tag;
 import joshua.storageapp.services.CreateDaoService;
 
 @Controller
@@ -53,14 +54,7 @@ public class ViewController {
     @GetMapping("/collection/{id}/search")
     public String viewCollectionWithSearchTerm(@PathVariable long id, @RequestParam("search") String searchTerm, Model model) {
         model.addAttribute("collection", createDao.findCollectionById(id));
-        List<Item> items = createDao.getItemsBySearchTerm(searchTerm);
-        ArrayList<Item> filteredItems = new ArrayList<>();
-        for (Item item : items){
-            if (item.getContainer().getCollection().getId() == id){
-                filteredItems.add(item);
-            }
-        }
-        model.addAttribute("items", filteredItems);
+        model.addAttribute("items", createDao.getItemsBySearchTerm(searchTerm, id));
         return "/collection";
     }
 

@@ -1,6 +1,6 @@
 package joshua.storageapp.services;
 
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -58,20 +58,42 @@ public class CreateDaoService {
         return itemDao.findById(id);
     }
 
-    public Tag findTagByName(String name){
+    public Tag findTagByName(String name) {
         return tagDao.findByName(name);
     }
 
-    public boolean checkIfTagExists(String name){
-        if (tagDao.findByName(name) != null){
+    public boolean checkIfTagExists(String name) {
+        if (tagDao.findByName(name) != null) {
             return true;
         } else {
             return false;
         }
     }
 
-    public List<Item> getItemsBySearchTerm(String searchTerm){
-        return itemDao.findItemsBySearchTerm(searchTerm);
+    public ArrayList<Item> getItemsBySearchTerm(String searchTerm, long collectionId) {
+
+        List<Item> items = itemDao.findItemsBySearchTerm(searchTerm);
+        ArrayList<Item> filteredItems = new ArrayList<>();
+        List<Tag> tags = tagDao.findTagsBySearchTerm(searchTerm);
+        for (Tag tag : tags) {
+            for (Item item : tag.getItems()) {
+                boolean contains = false;
+                for (int i = 0; i < items.size(); i++) {
+                    if (item.getId() == items.get(i).getId()) {
+                        contains = true;
+                    }
+                }
+                if (!contains) {
+                    items.add(item);
+                }
+            }
+        }
+        for (Item item : items) {
+            if (item.getContainer().getCollection().getId() == collectionId) {
+                filteredItems.add(item);
+            }
+        }
+        return filteredItems;
     }
 
 }
